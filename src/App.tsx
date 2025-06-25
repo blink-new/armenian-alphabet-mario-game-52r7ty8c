@@ -4,6 +4,8 @@ import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Play, RotateCcw, Trophy, Heart } from 'lucide-react'
+import CuteChar from '@/components/CuteChar'
+import CuteBoss from '@/components/CuteBoss'
 
 // Armenian alphabet for our game
 const ARMENIAN_LETTERS = [
@@ -201,18 +203,17 @@ function App() {
               <>
                 {/* Mario Character (Ճ) */}
                 <motion.div
-                  className="absolute text-6xl font-bold text-red-600 drop-shadow-lg select-none"
+                  className="absolute select-none"
                   style={{
                     left: gameState.marioPosition.x,
                     bottom: gameState.isJumping ? 120 : 60
                   }}
                   animate={{
                     bottom: gameState.isJumping ? 120 : 60,
-                    scale: gameState.isJumping ? 1.2 : 1
                   }}
                   transition={{ duration: 0.3 }}
                 >
-                  Ճ
+                  <CuteChar isJumping={gameState.isJumping} />
                 </motion.div>
 
                 {/* Collectible Letters */}
@@ -240,18 +241,17 @@ function App() {
                 {/* Boss Character (Չ) */}
                 {gameState.boss.isActive && (
                   <motion.div
-                    className="absolute text-8xl font-bold text-red-800 drop-shadow-lg select-none"
+                    className="absolute select-none"
                     style={{
                       left: gameState.boss.x,
                       bottom: 60
                     }}
                     animate={{
-                      scale: [1, 1.1, 1],
-                      rotate: [-5, 5, -5]
+                      scale: [1, 1.05, 1],
                     }}
-                    transition={{ repeat: Infinity, duration: 1 }}
+                    transition={{ repeat: Infinity, duration: 1.5 }}
                   >
-                    Չ
+                    <CuteBoss health={gameState.boss.health} />
                   </motion.div>
                 )}
               </>
